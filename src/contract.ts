@@ -11,6 +11,7 @@ export const rpcContract = defineRpcContract({
         z.object({
           id: z.string(),
           text: z.string(),
+          activeForm: z.string().optional(),
           status: todoStatusSchema,
         }),
       ),

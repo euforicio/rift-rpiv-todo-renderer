@@ -1,6 +1,6 @@
 {
   "name": "bb-rpiv-todo-renderer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Projects Pi's @juicesharp/rpiv-todo list into BB's native composer to-do panel.",
   "type": "module",
   "license": "MIT",

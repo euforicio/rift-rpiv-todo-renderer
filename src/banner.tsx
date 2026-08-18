@@ -6,7 +6,7 @@ import {
 } from "@get-bb/plugin-sdk/app";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { rpcContract } from "./contract";
-import { CheckIcon, ChevronDownIcon, ListTodoIcon, SquareIcon } from "./icons";
+import { CheckIcon, ChevronDownIcon, ListTodoIcon, LoaderIcon, SquareIcon } from "./icons";
 import type { TodoItem } from "./types";
 
 const STATUS_ORDER = { in_progress: 0, pending: 1, completed: 2 } as const;
@@ -31,18 +31,25 @@ function StatusGlyph({ status }: { status: TodoItem["status"] }) {
     return <CheckIcon className="rpiv-todo-icon text-muted-foreground" />;
   }
   if (status === "in_progress") {
-    return <SquareIcon className="rpiv-todo-icon text-foreground" />;
+    return <LoaderIcon className="rpiv-todo-icon rpiv-todo-spin text-foreground" />;
   }
   return <SquareIcon className="rpiv-todo-icon text-muted-foreground" />;
 }
 
 function TodoRow({ item }: { item: TodoItem }) {
   const active = item.status === "in_progress";
+  const current = active && item.activeForm ? item.activeForm : null;
+  const title = current ? `${item.text} — ${current}` : item.text;
   return (
-    <li className={`flex min-w-0 items-center gap-2 text-xs ${active ? "" : "text-muted-foreground"}`}>
+    <li
+      className={`flex min-w-0 items-start gap-2 text-xs ${active ? "text-foreground" : "text-muted-foreground"}`}
+    >
       <StatusGlyph status={item.status} />
-      <span className="min-w-0 flex-1 truncate" title={item.text}>
-        {item.text}
+      <span className="min-w-0 flex-1" title={title}>
+        <span className="block truncate">
+          #{item.id} {item.text}
+        </span>
+        {current ? <span className="mt-0.5 block truncate text-muted-foreground">{current}</span> : null}
       </span>
     </li>
   );
@@ -106,8 +113,13 @@ export function TodoBanner() {
   if (!threadId || sorted.length === 0) return null;
 
   const completed = sorted.filter((item) => item.status === "completed").length;
-  const visible = `${completed}/${sorted.length} complete`;
-  const aria = `${completed} of ${sorted.length} ${sorted.length === 1 ? "item" : "items"} complete`;
+  const current = sorted.find((item) => item.status === "in_progress");
+  const currentLabel = current ? current.activeForm || current.text : null;
+  const counts = `${completed}/${sorted.length} complete`;
+  const visible = currentLabel ? `${counts} · ${currentLabel}` : counts;
+  const aria = currentLabel
+    ? `${completed} of ${sorted.length} items complete, now ${currentLabel}`
+    : `${completed} of ${sorted.length} ${sorted.length === 1 ? "item" : "items"} complete`;
 
   return (
     <div className="min-h-8 overflow-hidden">

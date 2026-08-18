@@ -24,7 +24,7 @@ The agent still needs `@juicesharp/rpiv-todo` in Pi (`npm:@juicesharp/rpiv-todo`
 ## What you see
 
 - A card above the composer on an existing thread, matching BB’s native to-do panel.
-- In-progress rows show `activeForm` when the tool sent one; otherwise the subject.
+- In-progress rows keep the task subject, show `activeForm` underneath, and use a spinner. The header also appends the current `activeForm` (`2/5 complete · inspecting …`).
 - Deleted tasks stay hidden. `clear` empties the card.
 - The list refreshes while the turn is running and again when the thread goes idle.
 

@@ -20,6 +20,7 @@ export interface TaskState {
 export interface TodoItem {
   id: string;
   text: string;
+  activeForm?: string;
   status: Exclude<TaskStatus, "deleted">;
 }
 

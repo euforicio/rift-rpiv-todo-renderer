@@ -10,21 +10,19 @@ function trimAndTruncate(value: string): string {
   return trimmed.length <= TODO_TEXT_MAX_LENGTH ? trimmed : trimmed.slice(0, TODO_TEXT_MAX_LENGTH);
 }
 
-function taskText(task: Task): string {
-  const raw =
-    task.status === "in_progress" && task.activeForm && task.activeForm.trim().length > 0
-      ? task.activeForm
-      : task.subject;
-  return trimAndTruncate(raw);
-}
-
 export function itemsFromTasks(tasks: readonly Task[]): TodoItem[] {
   const items: TodoItem[] = [];
   for (const task of tasks) {
     if (task.status === "deleted") continue;
-    const text = taskText(task);
+    const text = trimAndTruncate(task.subject);
     if (!text) continue;
-    items.push({ id: String(task.id), text, status: task.status });
+    const activeForm = task.activeForm ? trimAndTruncate(task.activeForm) : "";
+    items.push({
+      id: String(task.id),
+      text,
+      status: task.status,
+      ...(activeForm ? { activeForm } : {}),
+    });
   }
   return items;
 }
