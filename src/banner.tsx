@@ -3,6 +3,7 @@ import {
   useRealtime,
   useRealtimeConnectionState,
   useRpc,
+  useSettings,
 } from "@get-bb/plugin-sdk/app";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { rpcContract } from "./contract";
@@ -59,6 +60,8 @@ export function TodoBanner() {
   const view = useComposerView();
   const rpc = useRpc<typeof rpcContract>();
   const connection = useRealtimeConnectionState();
+  const { values, isLoading: settingsLoading } = useSettings();
+  const expandOnEnter = values?.expandOnEnter !== false;
   const threadId = threadIdFromScope(view.scope);
   const [items, setItems] = useState<TodoItem[]>([]);
   const [expanded, setExpanded] = useState(true);
@@ -83,6 +86,11 @@ export function TodoBanner() {
   useEffect(() => {
     void load(threadId);
   }, [threadId, connection]);
+
+  useEffect(() => {
+    if (settingsLoading) return;
+    setExpanded(expandOnEnter);
+  }, [threadId, expandOnEnter, settingsLoading]);
 
   useRealtime("todos", (payload) => {
     if (isTodosSignal(payload) && payload.threadId === threadIdRef.current) {

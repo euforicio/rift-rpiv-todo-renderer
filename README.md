@@ -19,6 +19,17 @@ bb plugin install .
 
 Then refresh the BB app. Disable with `bb plugin disable bb-rpiv-todo-renderer`.
 
+## Settings
+
+**Expand list when opening a thread** (default on) — Settings → RPIV Todo, or:
+
+```sh
+bb plugin config bb-rpiv-todo-renderer set expandOnEnter false
+bb plugin reload bb-rpiv-todo-renderer
+```
+
+Off keeps only the `N/M complete` header until you expand it. Switching threads reapplies the setting; a manual toggle on the current thread is left alone.
+
 The agent still needs `@juicesharp/rpiv-todo` in Pi (`npm:@juicesharp/rpiv-todo` in `~/.pi/agent/settings.json`). This plugin only renders.
 
 ## What you see
