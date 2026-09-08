@@ -15,7 +15,7 @@
     "url": "https://github.com/ZhenHuangLab/bb-rpiv-todo-renderer/issues"
   },
   "engines": {
-    "rift": ">=0.1.0",
+    "rift": ">=0.38",
     "riftPluginSdk": ">=0.4.48"
   },
   "rift": {
