@@ -1,4 +1,4 @@
-import type { BbPluginApi } from "@get-bb/plugin-sdk";
+import type { RiftPluginApi } from "@riftlabs/plugin-sdk";
 import { replayTodoArgs } from "./replay";
 import { TODO_TEXT_MAX_LENGTH, type Task, type TodoItem } from "./types";
 
@@ -50,7 +50,7 @@ function todoArgsFromEvent(row: { type: string; data: unknown }): Record<string,
 }
 
 export async function snapshotForThread(
-  bb: BbPluginApi,
+  bb: RiftPluginApi,
   threadId: string,
 ): Promise<{ items: TodoItem[] }> {
   const calls: Record<string, unknown>[] = [];

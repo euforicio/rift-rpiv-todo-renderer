@@ -1,8 +1,8 @@
-import type { BbPluginApi } from "@get-bb/plugin-sdk";
+import type { RiftPluginApi } from "@riftlabs/plugin-sdk";
 import { rpcContract } from "./src/contract";
 import { snapshotForThread } from "./src/snapshot";
 
-export default function plugin(bb: BbPluginApi) {
+export default function plugin(bb: RiftPluginApi) {
   bb.settings.define({
     expandOnEnter: {
       type: "boolean",

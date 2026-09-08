@@ -1,4 +1,4 @@
-import { defineRpcContract } from "@get-bb/plugin-sdk";
+import { defineRpcContract } from "@riftlabs/plugin-sdk";
 import { z } from "zod";
 
 const todoStatusSchema = z.enum(["pending", "in_progress", "completed"]);

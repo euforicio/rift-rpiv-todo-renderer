@@ -4,7 +4,7 @@ import {
   useRealtimeConnectionState,
   useRpc,
   useSettings,
-} from "@get-bb/plugin-sdk/app";
+} from "@riftlabs/plugin-sdk/app";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { rpcContract } from "./contract";
 import { CheckIcon, ChevronDownIcon, ListTodoIcon, LoaderIcon, SquareIcon } from "./icons";

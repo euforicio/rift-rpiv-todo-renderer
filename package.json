@@ -1,22 +1,24 @@
 {
-  "name": "bb-rpiv-todo-renderer",
+  "name": "rift-plugin-bb-rpiv-todo-renderer",
+  "homepage": "https://riftlabs.app",
+  "author": "Rift Labs",
   "version": "0.1.2",
   "description": "Projects Pi's @juicesharp/rpiv-todo list into BB's native composer to-do panel.",
   "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ZhenHuangLab/bb-rpiv-todo-renderer.git"
+    "url": "https://github.com/euforicio/rift-rpiv-todo-renderer.git"
   },
-  "homepage": "https://github.com/ZhenHuangLab/bb-rpiv-todo-renderer",
+  "homepage": "https://riftlabs.app",
   "bugs": {
     "url": "https://github.com/ZhenHuangLab/bb-rpiv-todo-renderer/issues"
   },
   "engines": {
-    "bb": ">=0.38",
-    "bbPluginSdk": ">=0.4.6"
+    "rift": ">=0.1.0",
+    "riftPluginSdk": ">=0.4.48"
   },
-  "bb": {
+  "rift": {
     "name": "RPIV Todo",
     "description": "Shows Pi rpiv-todo tasks in BB's composer to-do list. Reconstructs the live list from todo tool calls because BB only special-cases TodoWrite and Claude Task* tools.",
     "branding": {
@@ -30,7 +32,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@get-bb/plugin-sdk": "0.4.6",
+    "@riftlabs/plugin-sdk": "0.4.48",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "typescript": "^5.7.0"
